@@ -56,6 +56,17 @@
   max-width: 25%;
 }
 
+.movie-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.imdb-logo {
+  height: 20px;
+  margin: 1em 0 1em 0.5em; 
+}
+
 .errorMessage {
   margin: auto;
   font-weight: bold;
