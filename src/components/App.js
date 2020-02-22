@@ -1,10 +1,11 @@
-import React, { useReducer, useEffect } from 'react';
-import '../App.css';
-import Header from './Header';
-import Search from './Search';
-import Movie from './Movie';
+import React, { useReducer, useEffect } from "react";
+import "../App.css";
+import Header from "./Header";
+import Search from "./Search";
+import Movie from "./Movie";
+import { API_KEY } from "../constants/API_KEY";
 
-const MOVIE_API_URL = "http://www.omdbapi.com/?s=man&apikey=41a0fe80"
+const MOVIE_API_URL = `http://www.omdbapi.com/?s=man&apikey=${API_KEY}`;
 
 const initialState = {
   loading: true,
@@ -32,11 +33,11 @@ const reducer = (state, action) => {
         loading: false,
         errorMessage: action.error
       };
-  
+
     default:
       return state;
   }
-}
+};
 
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -57,10 +58,10 @@ const App = () => {
       type: "SEARCH_MOVIES_REQUEST"
     });
 
-    fetch(`http://www.omdbapi.com/?s=${searchValue}&apikey=41a0fe80`)
+    fetch(`http://www.omdbapi.com/?s=${searchValue}&apikey=${API_KEY}`)
       .then(res => res.json())
       .then(jsonRes => {
-        if(jsonRes.Response === "True") {
+        if (jsonRes.Response === "True") {
           dispatch({
             type: "SEARCH_MOVIES_SUCCESS",
             payload: jsonRes.Search
@@ -94,6 +95,6 @@ const App = () => {
       </div>
     </div>
   );
-}
+};
 
 export default App;
